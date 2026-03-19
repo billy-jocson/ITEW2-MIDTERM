@@ -1,0 +1,97 @@
+/* Universal Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a { cursor: pointer; }
+
+/* Overlay */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 5001; /* Higher than sidebar */
+}
+
+#loading-overlay img {
+    max-width: 50px; /* Changed from 5% for better visibility */
+}
+
+/* Sidebar & Layout */
+#sidePanel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 5000;
+}
+#home, #edit, #profileName, #logOutBtn, #webName, #webDesc{
+    min-width: 100px;
+}
+
+/* Grouped content areas for cleaner code */
+#mainContent, #editProfile {
+    margin-left: 250px;
+    padding: 0;
+    transition: all 0.3s ease;
+    width: auto;
+}
+
+/* Sidebar States */
+#sidePanel.collapsed {
+    width: 0;
+    overflow: hidden; /* Ensures content doesn't bleed out */
+}
+
+#sidePanel.collapsed ~ #mainContent, 
+#sidePanel.collapsed ~ #editProfile {
+    margin-left: 0;
+}
+
+/* Sidebar Components */
+#showEditProfile, #showEditProfile > img {
+    width: 60%;
+}
+
+#showEditProfile{
+    display: flex;
+    justify-content: center;
+}
+
+#home, #edit {
+    align-self: flex-start;
+}
+
+#sidebarCollapse {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 5001;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    #mainContent, #editProfile {
+        margin-left: 0;
+    }
+    
+    #sidePanel:not(.collapsed) {
+        width: 100%; /* Full screen overlay on mobile if opened */
+    }
+}
