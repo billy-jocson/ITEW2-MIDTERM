@@ -9,101 +9,98 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <main class="min-vh-100 d-flex justify-content-center align-items-center" style="background-image: url(https://t3.ftcdn.net/jpg/03/55/60/70/360_F_355607062_zYMS8jaz4SfoykpWz5oViRVKL32IabTP.jpg); background-size: 100%;">
-        <div class="container rounded-5 row w-100 align-items-center bg-light p-5 shadow" id="loginSignUpPage" style="padding-inline: 15%;">
-            <div id="loading-overlay" class="flex-column" style="display: none;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/YouTube_loading_symbol_3_%28transparent%29.gif"
-                    alt="Loading GIF">
-                <p class="text-center text-light mt-3">Loading...</p>
-            </div>
-
-            <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
+    <main class="min-vh-100 d-flex justify-content-center align-items-center" style="background-image: url(https://img.freepik.com/free-vector/white-gray-abstract-gradient-background_69286-550.jpg); background-size: 100%;">
+        <div class="rounded-5 row w-100 align-items-center" id="loginSignUpPage" style="padding-inline: 15%;">
+            <div class="row text-lg-start mb-4 mb-lg-0">
                 <h1 class="display-3 fw-bold">Readify</h1>
                 <p class="text-muted">An E-Library system.</p>
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Password</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Juan dela Cruz</td>
-                            <td>123</td>
-                        </tr>
-                        <tr>
-                            <td>librarian</td>
-                            <td>123</td>
-                        </tr>
-                        <tr>
-                            <td>admin</td>
-                            <td>123</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="accPage">
-                    <div class="d-flex flex-column gap-2 w-75 mx-auto" id="loginPage">
-
-                        <label>Username</label>
-                        <input type="text" id="txtUsername" class="form-control">
-
-                        <label>Password</label>
-                        <input type="password" id="txtPassword" class="form-control">
-                        <div style="display: none; color: red;" id="incorrectPassword">
-                            <i class="fa-solid fa-circle-exclamation"></i>
-                            Incorrect Password
+                <div class="col-12 col-md-6 g-3">
+                    <div class="accPage">
+                        <div class="d-flex flex-column gap-2" id="loginPage">
+                            
+                            <label>Username</label>
+                            <input type="text" id="txtUsername" class="form-control">
+    
+                            <label>Password</label>
+                            <input type="password" id="txtPassword" class="form-control">
+                            <div style="display: none; color: red;" id="incorrectPassword">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                Incorrect Password
+                            </div>
+    
+                            <button id="btnLogin" class="btn btn-primary mt-3 rounded-pill">Login</button>
+    
+                            <a id="btnRedirectToCreateAcc" class="text-center">
+                                Don't have an account?
+                            </a>
+    
                         </div>
-
-                        <button id="btnLogin" class="btn btn-primary mt-3 rounded-pill">Login</button>
-
-                        <a id="btnRedirectToCreateAcc" class="text-center">
-                            Don't have an account?
-                        </a>
-
+                    </div>
+    
+                    <!-- CREATE ACCOUNT FORM -->
+                    <div class="accPage" style="display:none;">
+                        <div class="d-flex flex-column gap-2" id="accCreatePage">
+                            <label>Username</label>
+                            <input type="text" id="txtUsernameCreate" class="form-control"
+                            placeholder="Enter your username">
+                            
+                            <label>Password</label>
+                            <input type="password" id="txtPasswordCreate" class="form-control"
+                                placeholder="Enter your password">
+    
+                            <label>Confirm Password (Retype password)</label>
+                            <input type="password" id="txtPasswordRetype" class="form-control"
+                                placeholder="Retype your password">
+    
+                            <label>Account Type</label>
+                            <select class="form-select" id="accType">
+                                <option>Student</option>
+                                <option>Librarian</option>
+                                <option>Administrator</option>
+                            </select>
+    
+                            <button id="btnCreateAccount" class="btn btn-primary mt-3 rounded-pill">
+                                Create Account
+                            </button>
+    
+                            <a id="btnBack" class="text-center">
+                                Already have an account?
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <!-- CREATE ACCOUNT FORM -->
-                <div class="accPage" style="display:none;">
-                    <div class="d-flex flex-column gap-2 w-75 mx-auto" id="accCreatePage">
-                        <label>Username</label>
-                        <input type="text" id="txtUsernameCreate" class="form-control"
-                            placeholder="Enter your username">
-
-                        <label>Password</label>
-                        <input type="password" id="txtPasswordCreate" class="form-control"
-                            placeholder="Enter your password">
-
-                        <label>Confirm Password (Retype password)</label>
-                        <input type="password" id="txtPasswordRetype" class="form-control"
-                            placeholder="Retype your password">
-
-                        <label>Account Type</label>
-                        <select class="form-select" id="accType">
-                            <option>Student</option>
-                            <option>Librarian</option>
-                            <option>Administrator</option>
-                        </select>
-
-                        <button id="btnCreateAccount" class="btn btn-primary mt-3 rounded-pill">
-                            Create Account
-                        </button>
-
-                        <a id="btnBack" class="text-center">
-                            Already have an account?
-                        </a>
-                    </div>
+                <div class="col-12 col-md-6">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="bg-transparent">Username</th>
+                                <th class="bg-transparent">Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="bg-transparent">Juan dela Cruz</td>
+                                <td class="bg-transparent">123</td>
+                            </tr>
+                            <tr>
+                                <td class="bg-transparent">librarian</td>
+                                <td class="bg-transparent">123</td>
+                            </tr>
+                            <tr>
+                                <td class="bg-transparent">admin</td>
+                                <td class="bg-transparent">123</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+
         </div>
     </main>
     

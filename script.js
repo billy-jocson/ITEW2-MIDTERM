@@ -55,14 +55,20 @@ $(document).ready(function(){
         let accType = $('#accType');
 
         if(password.val().length <= 5 && confirmPass.val().length <= 5){
-            alert("Password must be at least 6 characters long.");
+            Swal.fire({
+                title: "Password length should be 6 or more!",
+                icon: "error"
+            });
             return;
         }
 
         if(confirmPass.val() != password.val()){
             password.css('border-color', 'red');
             confirmPass.css('border-color', 'red');
-            alert('Passwords don\'t match!');
+            Swal.fire({
+                title: "Password don't match!",
+                icon: "error"
+            });
             return;
         }
 
@@ -90,7 +96,11 @@ $(document).ready(function(){
         localStorage.setItem('accounts', JSON.stringify(accounts));
         $('#txtUsernameCreate, #txtPasswordCreate, #txtPasswordRetype').val('');
         $('#accType').prop('setSelected', '0');
-        alert('Account was created!');
+        Swal.fire({
+            title: "Account successfully created!",
+            text: "You can now login.",
+            icon: "success"
+        });
         $('#btnBack').click();
     });
 
@@ -129,6 +139,5 @@ $(document).ready(function(){
             }
         }
         $('#incorrectPassword').show();
-        alert('Incorrect password!');
     });
 });

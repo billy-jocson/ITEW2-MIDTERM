@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    Swal.fire({
+        title: "Login successful!",
+        icon: "success"
+    });
     // --- INITIALIZATION ---
     // Fetch user and account data from browser storage
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -114,7 +118,10 @@ $(document).ready(function () {
             removeAccount(currentUser.user);
             $('#dashboard').fadeOut('fast');
             setTimeout(function () {
-                alert('Account deleted successfully!');
+                Swal.fire({
+                    title: "Account deleted successfully!",
+                    icon: "success"
+                });
                 window.location.href = 'index.html';
             }, 400);
         }
@@ -240,16 +247,24 @@ $(document).ready(function () {
         $('#newNameInput, #newPasswordInput').removeClass('is-invalid');
         let newName = $('#newNameInput').val().trim();
         let newPassword = $('#newPasswordInput').val().trim();
-        let isValid = true;
 
-        if (newName === "") { $('#newNameInput').addClass('is-invalid'); isValid = false; }
-        if (newPassword === "" || newPassword.length < 6) { 
-            alert("Password required (min 6 chars)"); 
-            $('#newPasswordInput').addClass('is-invalid'); 
-            isValid = false; 
+        if(!newName && !newPassword){
+            $('#newNameInput, #newPasswordInput').addClass('is-invalid');
+            Swal.fire({
+                title: "Please fill in all the fields!",
+                icon: "error"
+            });
+            return;
         }
 
-        if (!isValid) return;
+        if (newPassword.length < 6) { 
+            Swal.fire({
+                title: "Password length should be 6 or more!",
+                icon: "error"
+            });
+            $('#newPasswordInput').addClass('is-invalid'); 
+            return;
+        }
 
         let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
         for (let i = 0; i < accounts.length; i++) {
@@ -268,13 +283,20 @@ $(document).ready(function () {
         $('#editDisplayName, #profileName').text(newName);
         displayNameGreetings();
         $('#newPasswordInput, #newNameInput').val('');
-        alert("Profile updated!");
+        Swal.fire({
+            title: "Profile updated!",
+            icon: "success"
+        });
     });
 
     // ENTER EDIT MODE FOR A BOOK (Inline editing)
     $('#books').on('click', '.editBtn', function () {
         if(bookBeingEdited != ""){
-            alert(`You are currently editing ${bookBeingEdited}!`);
+            Swal.fire({
+                title: `You are currently editing ${bookBeingEdited}!`,
+                text: 'Cannot edit this books while editing other books',
+                icon: "error"
+            });
             return;
         }
         let card = $(this).closest('.border'); 

@@ -39,7 +39,7 @@ a { cursor: pointer; }
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    z-index: 5000;
+    z-index: 1000;
 }
 #home, #edit, #profileName, #logOutBtn, #webName, #webDesc{
     min-width: 100px;
